@@ -1,0 +1,3 @@
+[submodule "original/MedViT"]
+	path = original/MedViT
+	url = https://github.com/Omid-Nejati/MedViT.git
