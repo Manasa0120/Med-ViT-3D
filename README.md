@@ -1,9 +1,17 @@
+<<<<<<< HEAD
+# MedViT: A Robust Vision Transformer for Generalized Medical Image Classification
+=======
 # MedViT-3D: A Robust Vision Transformer for Generalized 3D Medical Image Classification
+>>>>>>> origin/main
 
 [![Paper](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2302.09462)
 [![Paper](https://img.shields.io/badge/Elsevier-CIBM-blue)](https://doi.org/10.1016/j.compbiomed.2023.106791)
 
+<<<<<<< HEAD
+This repo is the official implementation of MedViT: A Robust Vision Transformer for Generalized Medical Image Classification.
+=======
 This repo is the official implementation of MedViT-3D: A Robust Vision Transformer for Generalized 3D Medical Image Classification.
+>>>>>>> origin/main
 
 
   
@@ -13,7 +21,11 @@ This repo is the official implementation of MedViT-3D: A Robust Vision Transform
 
 
 ## Introduction
+<<<<<<< HEAD
+Convolutional Neural Networks (CNNs) have advanced existing medical systems for automatic disease diagnosis. However, there are still concerns about the reliability of deep medical diagnosis systems against the potential threats of adversarial attacks since inaccurate diagnosis could lead to disastrous consequences in the safety realm. In this study, we propose a highly robust yet efficient CNN-Transformer hybrid model which is equipped with the locality of CNNs as well as the global connectivity of vision Transformers. To mitigate the high quadratic complexity of the self-attention mechanism while jointly attending to information in various representation subspaces, we construct our attention mechanism by means of an efficient convolution operation. Moreover, to alleviate the fragility of our Transformer model against adversarial attacks, we attempt to learn smoother decision boundaries. To this end, we augment the shape information of an image in the high-level feature space by permuting the feature mean and variance within mini-batches. With less computational complexity, our proposed hybrid model demonstrates its high robustness and generalization ability compared to the state-of-the-art studies on a large-scale collection of standardized MedMNIST-2D datasets. 
+=======
 Medical image classification is a critical step in medical image analysis. Convolutional Neural Networks (CNNs) have advanced existing medical systems for automatic disease diagnosis. The MedViT model presents a hybrid CNN-Transformer architecture optimized for 2D medical image classification [1]. This model does not work well with volumetric data and has a high computational requirement. The objective of this project is to overcome the two limitations by introducing MedViT-3D, a model that can classify volumetric 3D images such as CT scans, MRI, OCT etc, with high accuracy. To enhance generalizability, we propose a cross-modality transfer strategy where the model is trained on X-ray images and evaluated on MRI data. Our work aims to extend the model to support volumetric 3D data, enhance the performance of MedViT. 
+>>>>>>> origin/main
 <div style="text-align: center">
 <img src="images/result.png" title="MedViT-S" height="60%" width="60%">
 </div>
@@ -32,7 +44,13 @@ We provide a series of MedViT models pretrained on ILSVRC2012 ImageNet-1K datase
 
 | Model      |   Dataset   | Resolution  | Acc@1 | ckpt   |  
 |------------|:-----------:|:----------:|:--------:|:--------:|
+<<<<<<< HEAD
+| MedViT_small | ImageNet-1K |    224   | 83.70 | [ckpt](https://drive.google.com/file/d/14wcH5cm8P63cMZAUHA1lhhJgMVOw_5VQ/view?usp=sharing) | 
+| MedViT_base | ImageNet-1K |    224    | 83.92 |[ckpt](https://drive.google.com/file/d/1Lrfzjf3CK7YOztKa8D6lTUZjYJIiT7_s/view?usp=sharing) | 
+| MedViT_large | ImageNet-1K |    224   | 83.96 |[ckpt](https://drive.google.com/file/d/1sU-nLpYuCI65h7MjFJKG0yphNAlUFSKG/view?usp=sharing) | 
+=======
 
+>>>>>>> origin/main
 
 ## Visualization
 
@@ -42,6 +60,22 @@ where the superiority of our proposed method can be clearly seen.
 ![MedViT-V](images/visualize.png)
 <center>Figure 3. The heat maps of the output feature from ResNet and MedViT.</center>
 
+<<<<<<< HEAD
+## Citation
+If you find this project useful in your research, please consider cite:
+```
+@article{manzari2023medvit,
+  title={MedViT: A robust vision transformer for generalized medical image classification},
+  author={Manzari, Omid Nejati and Ahmadabadi, Hamid and Kashiani, Hossein and Shokouhi, Shahriar B and Ayatollahi, Ahmad},
+  journal={Computers in Biology and Medicine},
+  volume={157},
+  pages={106791},
+  year={2023},
+  publisher={Elsevier}
+}
+```
+=======
+>>>>>>> origin/main
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=Omid-Nejati/MedViT&type=Date)](https://star-history.com/#Omid-Nejati/MedViT&Date)
@@ -51,3 +85,10 @@ We heavily borrow the code from [RVT](https://github.com/vtddggg/Robust-Vision-T
 
 ## Contact Information
 
+<<<<<<< HEAD
+For any inquiries or questions regarding the code, please feel free to contact us directly via email:
+
+- Omid Nejaty: [omid.nejaty@gmail.com](mailto:omid.nejaty@gmail.com)
+- Hossein Kashiani: [hkashia@clemson.edu](mailto:hkashia@clemson.edu)
+=======
+>>>>>>> origin/main
