@@ -1,94 +1,85 @@
-<<<<<<< HEAD
-# MedViT: A Robust Vision Transformer for Generalized Medical Image Classification
-=======
-# MedViT-3D: A Robust Vision Transformer for Generalized 3D Medical Image Classification
->>>>>>> origin/main
 
-[![Paper](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2302.09462)
-[![Paper](https://img.shields.io/badge/Elsevier-CIBM-blue)](https://doi.org/10.1016/j.compbiomed.2023.106791)
-
-<<<<<<< HEAD
-This repo is the official implementation of MedViT: A Robust Vision Transformer for Generalized Medical Image Classification.
-=======
-This repo is the official implementation of MedViT-3D: A Robust Vision Transformer for Generalized 3D Medical Image Classification.
->>>>>>> origin/main
+# MedViT-3D: An enhanced model with CBAM integration
 
 
-  
-## Train & Test --- Prepare data
-- (beginner friendly🍉) To train/evaluate MedViT on Cifar/Imagenet/CustomDataset follow ["CustomDataset"](https://github.com/Omid-Nejati/MedViT/blob/main/CustomDataset.md). 
-- (New version) Updated the code ["Instructions.ipynb"](https://github.com/Omid-Nejati/MedViT/blob/main/Instructions.ipynb), added the installation requirements and adversarial robustness. [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Omid-Nejati/MedViT/blob/main/Instructions.ipynb)
+
 
 
 ## Introduction
-<<<<<<< HEAD
-Convolutional Neural Networks (CNNs) have advanced existing medical systems for automatic disease diagnosis. However, there are still concerns about the reliability of deep medical diagnosis systems against the potential threats of adversarial attacks since inaccurate diagnosis could lead to disastrous consequences in the safety realm. In this study, we propose a highly robust yet efficient CNN-Transformer hybrid model which is equipped with the locality of CNNs as well as the global connectivity of vision Transformers. To mitigate the high quadratic complexity of the self-attention mechanism while jointly attending to information in various representation subspaces, we construct our attention mechanism by means of an efficient convolution operation. Moreover, to alleviate the fragility of our Transformer model against adversarial attacks, we attempt to learn smoother decision boundaries. To this end, we augment the shape information of an image in the high-level feature space by permuting the feature mean and variance within mini-batches. With less computational complexity, our proposed hybrid model demonstrates its high robustness and generalization ability compared to the state-of-the-art studies on a large-scale collection of standardized MedMNIST-2D datasets. 
-=======
-Medical image classification is a critical step in medical image analysis. Convolutional Neural Networks (CNNs) have advanced existing medical systems for automatic disease diagnosis. The MedViT model presents a hybrid CNN-Transformer architecture optimized for 2D medical image classification [1]. This model does not work well with volumetric data and has a high computational requirement. The objective of this project is to overcome the two limitations by introducing MedViT-3D, a model that can classify volumetric 3D images such as CT scans, MRI, OCT etc, with high accuracy. To enhance generalizability, we propose a cross-modality transfer strategy where the model is trained on X-ray images and evaluated on MRI data. Our work aims to extend the model to support volumetric 3D data, enhance the performance of MedViT. 
->>>>>>> origin/main
-<div style="text-align: center">
-<img src="images/result.png" title="MedViT-S" height="60%" width="60%">
-</div>
-Figure 1. Comparison between MedViTs and the baseline ResNets, in terms of average ACC-Parameters and average AUC-Parametrs trade-off over all 2D datasets.</center>
+
+Medical imaging plays an indispensable role in modern diagnostics, facilitating early detection, monitoring, and treatment planning for a variety of conditions. The exponential growth in medical imaging data particularly volumetric data such as CT, MRI, and OCT scans has emphasized the need for automated, accurate, and scalable diagnostic tools. While Convolutional Neural Networks (CNNs) have demonstrated remarkable success in 2D image analysis, their applicability to 3D medical data remains limited due to architectural constraints and high computational overhead.
+MedViT is a model that combines two common methods, convolutional layers, which are good at capturing local details, and transformer blocks, which help understand overall patterns. It relies on an attention mechanism that can be demanding in terms of computing power. To address this, our project introduces MedViT-3D, which adjusts the original model to work with 3D scans by using 3D operations and replacing the attention block with CBAM. This allows the model to better process 3D scans like MRIs and CTs while keeping the design simple. We also explored how well the model can adapt by using a cross-modality approach i.e. training it on one type of scan and testing it on another. This helps us understand if the model can generalize across different medical image types. Through this project, we aim to build a model that can work across different scan types and help support medical decision-making.
+
 
 
 ## Overview
+                                                                      Architecture
+*ECB: Efficient Convolution Block
+*MHCA: Multi Head Convolution Attention
+*LFFN: Locally Feed Forward Network
+*BN: Batch Normalization
+*LTB: Local Transformer Block
+*Nx: number of times to repeat this block defined by (4;2;2;2) (example: ECB x N2: N2 times ECB implementation).
 
 <div style="text-align: center">
-<img src="images/structure.png" title="MedViT-S" height="75%" width="75%">
+<img width="686" height="595" alt="image" src="https://github.com/user-attachments/assets/7c1de228-ab2f-4d61-ae58-e1177554d209" />
+                                                  Fig. MedViT-3D Architecture
+Legend
+  
+<img width="71" height="22" alt="image" src="https://github.com/user-attachments/assets/a8ef7208-3ec3-4eab-815d-0ddb18b01d83" /> MedViT3D architecture. Breakout of only first block (ECB &LTB) is shown for the explanation purpose. However, blocks across all the stages are modified as indicated by the legend.
+  
+
+
+<img width="79" height="26" alt="image" src="https://github.com/user-attachments/assets/487422f4-ec6d-464e-8e7a-abdfcccd9ef2" />
+            
+Base architecture
+
+
+
+<img width="384" height="528" alt="image" src="https://github.com/user-attachments/assets/80bc56a1-4b03-4d25-805f-65bdf4e7f2fa" />   <img width="398" height="546" alt="image" src="https://github.com/user-attachments/assets/142e5fd4-725c-4a1c-9a11-e7e45e5e21f9" />
+       
+
+                                        Fig. Comparison of LTB (Base vs. MedViT-3D)
+
+Legend
+
+<img width="68" height="25" alt="image" src="https://github.com/user-attachments/assets/252e6b87-6f0c-4d73-b123-488a1263936d" />     LTB (MedViT-3D)
+
+<img width="69" height="23" alt="image" src="https://github.com/user-attachments/assets/b71e7825-02d7-4ff5-9387-913be8ac2860" />     LTB (Base Architecture)           
+
+
 </div>
-Figure 2. The overall hierarchical architecture of MedViT.</center>
 
-## ImageNet Pre-train
-We provide a series of MedViT models pretrained on ILSVRC2012 ImageNet-1K dataset.
 
-| Model      |   Dataset   | Resolution  | Acc@1 | ckpt   |  
-|------------|:-----------:|:----------:|:--------:|:--------:|
-<<<<<<< HEAD
-| MedViT_small | ImageNet-1K |    224   | 83.70 | [ckpt](https://drive.google.com/file/d/14wcH5cm8P63cMZAUHA1lhhJgMVOw_5VQ/view?usp=sharing) | 
-| MedViT_base | ImageNet-1K |    224    | 83.92 |[ckpt](https://drive.google.com/file/d/1Lrfzjf3CK7YOztKa8D6lTUZjYJIiT7_s/view?usp=sharing) | 
-| MedViT_large | ImageNet-1K |    224   | 83.96 |[ckpt](https://drive.google.com/file/d/1sU-nLpYuCI65h7MjFJKG0yphNAlUFSKG/view?usp=sharing) | 
-=======
 
->>>>>>> origin/main
 
-## Visualization
+## Comparative Results for 3D image classification
+	
 
-Visual inspection of MedViT-T and ResNet-18 using Grad-CAM on MedMNIST-2D datasets. The green rectangles is
-used to show a specific part of the image that contains information relevant to the diagnosis or analysis of a medical condition,
-where the superiority of our proposed method can be clearly seen.
-![MedViT-V](images/visualize.png)
-<center>Figure 3. The heat maps of the output feature from ResNet and MedViT.</center>
+<img width="788" height="287" alt="image" src="https://github.com/user-attachments/assets/f622043b-4b93-4a8b-92f0-330341c1c07f" />
 
-<<<<<<< HEAD
+
+<img width="771" height="236" alt="image" src="https://github.com/user-attachments/assets/949764e9-7bd5-4585-b85e-16a6bbf9052c" />
+
+
+
 ## Citation
 If you find this project useful in your research, please consider cite:
 ```
-@article{manzari2023medvit,
-  title={MedViT: A robust vision transformer for generalized medical image classification},
-  author={Manzari, Omid Nejati and Ahmadabadi, Hamid and Kashiani, Hossein and Shokouhi, Shahriar B and Ayatollahi, Ahmad},
+@article{Medvit3D with CBAM,
+  title={MedViT-3D: An enhanced model with CBAM integration},
+  author={Abhijeet Singh, Manasa Lakkakula, Xuan Nguyen,
   journal={Computers in Biology and Medicine},
-  volume={157},
-  pages={106791},
-  year={2023},
-  publisher={Elsevier}
+  
 }
-```
-=======
->>>>>>> origin/main
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=Omid-Nejati/MedViT&type=Date)](https://star-history.com/#Omid-Nejati/MedViT&Date)
-
-## Acknowledgement
-We heavily borrow the code from [RVT](https://github.com/vtddggg/Robust-Vision-Transformer) and [LocalViT](https://github.com/ofsoundof/LocalViT).
 
 ## Contact Information
 
-<<<<<<< HEAD
+
 For any inquiries or questions regarding the code, please feel free to contact us directly via email:
 
-- Omid Nejaty: [omid.nejaty@gmail.com](mailto:omid.nejaty@gmail.com)
-- Hossein Kashiani: [hkashia@clemson.edu](mailto:hkashia@clemson.edu)
+- Abhijeet Singh: [abhijeetsingh.abs@gmail.com]
+- Manasa Lakkakula: [manasa2001@gmail.com]
+-Xuan Nguyen : [xuan.nguyen.intel@gmail.com]
 =======
->>>>>>> origin/main
+
